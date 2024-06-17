@@ -90,7 +90,7 @@ namespace Marketplace.Domain
 
             if (!valid)
                 throw new InvalidEntityStateException(
-                    this, $"Post-checks failed in state {State}");
+                    this, message: $"Post-checks failed in state {State}");
         }
 
         public enum ClassifiedAdState

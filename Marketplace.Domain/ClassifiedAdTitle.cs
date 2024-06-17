@@ -15,12 +15,12 @@ namespace Marketplace.Domain
         public static ClassifiedAdTitle FromHtml(string htmlTitle)
         {
             var supportedTagsReplaced = htmlTitle
-                .Replace("<i>", "*")
-                .Replace("</i>", "*")
-                .Replace("<b>", "**")
-                .Replace("</b>", "**");
+                .Replace(oldValue: "<i>", newValue: "*")
+                .Replace(oldValue: "</i>", newValue: "*")
+                .Replace(oldValue: "<b>", newValue: "**")
+                .Replace(oldValue: "</b>", newValue: "**");
 
-            var value = Regex.Replace(supportedTagsReplaced, pattern: "<.*?>", replacement: string.Empty);
+            var value = Regex.Replace(input: supportedTagsReplaced, pattern: "<.*?>", replacement: string.Empty);
             CheckValidity(value);
 
             return new ClassifiedAdTitle(value);

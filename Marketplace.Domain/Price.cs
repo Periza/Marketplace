@@ -9,7 +9,7 @@ namespace Marketplace.Domain
         {
             if (amount < 0)
                 throw new ArgumentException(
-                    "Price cannot be negative",
+                    message: "Price cannot be negative",
                     nameof(amount));
         }
 

@@ -11,13 +11,13 @@ namespace Marketplace.Domain
 
         public static Money FromString(string amount, string currency,
             ICurrencyLookup currencyLookup) =>
-            new Money(decimal.Parse(amount), currency, currencyLookup);
+            new Money(amount: decimal.Parse(amount), currency, currencyLookup);
 
         protected Money(decimal amount, string currencyCode, ICurrencyLookup currencyLookup)
         {
             if (string.IsNullOrEmpty(currencyCode))
                 throw new ArgumentNullException(
-                    nameof(currencyCode), "Currency code must be specified");
+                    nameof(currencyCode), message: "Currency code must be specified");
             
             var currency = currencyLookup.FindCurrency(currencyCode);
             if (!currency.InUse)
@@ -26,7 +26,7 @@ namespace Marketplace.Domain
             if (decimal.Round(amount, currency.DecimalPlaces) != amount)
                 throw new ArgumentOutOfRangeException(
                     nameof(amount),
-                    $"Amount in {currencyCode} cannot have more than {currency.DecimalPlaces} decimals");
+                    message: $"Amount in {currencyCode} cannot have more than {currency.DecimalPlaces} decimals");
 
             Amount = amount;
             Currency = currency;
@@ -54,7 +54,7 @@ namespace Marketplace.Domain
         {
             if (Currency != subtrahend.Currency)
                 throw new CurrencyMismatchException(
-                    "Cannot subtract amounts with different currencies");
+                    message: "Cannot subtract amounts with different currencies");
 
             return new Money(Amount - subtrahend.Amount, Currency);
         }
