@@ -1,12 +1,11 @@
 
-namespace Marketplace.Domain
+namespace Marketplace.Domain;
+
+public interface IClassifiedAdRepository
 {
-    public interface IClassifiedAdRepository
-    {
-        Task<bool> Exists(ClassifiedAdId id);
+    Task<bool> Exists(ClassifiedAdId id);
 
-        Task<ClassifiedAd> Load(ClassifiedAdId id);
+    Task<ClassifiedAd> Load(ClassifiedAdId id);
 
-        Task Save(ClassifiedAd entity);
-    }
+    Task Save(ClassifiedAd entity);
 }
