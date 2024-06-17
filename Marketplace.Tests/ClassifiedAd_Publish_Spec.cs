@@ -1,6 +1,5 @@
 using System;
 using Marketplace.Domain;
-using Marketplace.Domain.Value_objects;
 using Xunit;
 
 namespace Marketplace.Tests
